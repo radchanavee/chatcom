@@ -21,12 +21,9 @@ def verify():
 @app.route('/',methods=['POST'])
 def webhook():
 	data = request.get_json()
-	log(data)
+	print(data)
 	return "ok",200
 
-def log(message)
-	print(message)
-	system.stdout.flush()
 
     
 
