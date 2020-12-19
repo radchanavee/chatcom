@@ -37,6 +37,7 @@ def is_user_message(message):
 def listen():
     """This is the main function flask uses to 
     listen at the `/webhook` endpoint"""
+	print("testtttttttttttttttt")
     if request.method == 'GET':
         return verify_webhook(request)
 
