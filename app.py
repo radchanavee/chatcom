@@ -21,7 +21,7 @@ def verify():
 def webhook():
     data = request.get_json()
     log(data)
-
+    
 def log(message)
     print(message)
     sys.stdout.flush()
