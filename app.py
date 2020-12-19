@@ -20,7 +20,7 @@ def verify():
 
 @app.route('/',methods=['POST'])
 def webhook():
-    data = request.get_json()
+	data = request.get_json()
 	logging.info(data)
 
     
