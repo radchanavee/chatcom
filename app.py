@@ -20,7 +20,6 @@ def verify():
 @app.route('/',methods=['POST'])
 def webhook():
     data = request.get_json()
-    log(data)
     
 
 if __name__ == "__main__":
