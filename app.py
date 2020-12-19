@@ -1,30 +1,54 @@
 from flask import Flask, request
-import logging
 
+app = Flask(__name__)
 
-app = Flask("My echo bot")
+FB_API_URL = 'https://graph.facebook.com/v2.6/me/messages'
+
 PAGE_ACCESS_TOKEN = "EAA2YfX5EvmQBAAeixF2EDxrGijvj6rZCu6ZABfquFgR2ih84PUAcYdsDvye0WLwPVMsM7C1TrxHLHR4NWYcuWqB6Yv5vJsTnYv3ZBphmg1iE6pDZBRbYZBzJ4dBiVNNaFk0wVSNYOLh7xu7qGHmLwjwtI2ZC5UOgXreDaDEwhuVwZDZD"
 VERIFY_TOKEN = "hello"
+
 print("Testtttttt")
 
+def get_bot_response(message):
+    """This is just a dummy function, returning a variation of what
+    the user said. Replace this function with one connected to chatbot."""
+    return "This is a dummy response to '{}'".format(message)
 
-@app.route('/', methods=['GET'])
-def handle_verification():
-    if (request.args.get('hub.verify_token', '') == VERIFY_TOKEN):
-        print("Verified")
-        return request.args.get('hub.challenge', '')
+
+def verify_webhook(req):
+    if req.args.get("hub.verify_token") == VERIFY_TOKEN:
+        return req.args.get("hub.challenge")
     else:
-        print("Wrong token")
-        return "Error, wrong validation token"
+        return "incorrect"
 
-@app.route('/',methods=['POST'])
-def webhook():
-	data = request.get_json()
-	print("Hi Radchanavee")
-	return "ok",200
+def respond(sender, message):
+    """Formulate a response to the user and
+    pass it on to a function that sends it."""
+    response = get_bot_response(message)
+    send_message(sender, response)
 
 
-    
+def is_user_message(message):
+    """Check if the message is a message from the user"""
+    return (message.get('message') and
+            message['message'].get('text') and
+            not message['message'].get("is_echo"))
 
-if __name__ == "__main__":
-	app.run(port=8000, use_reloader = True)
+
+@app.route("/webhook")
+def listen():
+    """This is the main function flask uses to 
+    listen at the `/webhook` endpoint"""
+    if request.method == 'GET':
+        return verify_webhook(request)
+
+    if request.method == 'POST':
+        payload = request.json
+        event = payload['entry'][0]['messaging']
+        for x in event:
+            if is_user_message(x):
+                text = x['message']['text']
+                sender_id = x['sender']['id']
+                respond(sender_id, text)
+
+        return "ok"
