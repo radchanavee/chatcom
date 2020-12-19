@@ -7,13 +7,15 @@ PAGE_ACCESS_TOKEN = "EAA2YfX5EvmQBAAeixF2EDxrGijvj6rZCu6ZABfquFgR2ih84PUAcYdsDvy
 VERIFY_TOKEN = "hello"
 print("Testtttttt")
 
+
 @app.route('/', methods=['GET'])
-def verify():
-	if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-		if not request.args.get("hub.verify_token") == VERIFICATION_TOKEN:
-			return "Verification token mismatch", 403
-		return request.args["hub.challenge"], 200
-	return "Hello world", 200
+def handle_verification():
+    if (request.args.get('hub.verify_token', '') == VERIFY_TOKEN):
+        print("Verified")
+        return request.args.get('hub.challenge', '')
+    else:
+        print("Wrong token")
+        return "Error, wrong validation token"
 
 @app.route('/',methods=['POST'])
 def webhook():
