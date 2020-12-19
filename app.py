@@ -34,5 +34,5 @@ def hello_world():
 #         return response
 #     return 'ok'
 
-# if __name__ == "__main__":
-#     app.run(threaded=True, port=5000)
+if __name__ == "__main__":
+    app.run(threaded=True, port=5000)
