@@ -3,11 +3,8 @@ import logging
 
 
 app = Flask("My echo bot")
-
 PAGE_ACCESS_TOKEN = "EAA2YfX5EvmQBAAeixF2EDxrGijvj6rZCu6ZABfquFgR2ih84PUAcYdsDvye0WLwPVMsM7C1TrxHLHR4NWYcuWqB6Yv5vJsTnYv3ZBphmg1iE6pDZBRbYZBzJ4dBiVNNaFk0wVSNYOLh7xu7qGHmLwjwtI2ZC5UOgXreDaDEwhuVwZDZD"
-
-
-VERIFICATION_TOKEN = "hello"
+VERIFY_TOKEN = "hello"
 print("Testtttttt")
 
 @app.route('/', methods=['GET'])
