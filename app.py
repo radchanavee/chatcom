@@ -1,4 +1,5 @@
 from flask import Flask, request
+import logging
 
 
 app = Flask("My echo bot")
@@ -20,7 +21,8 @@ def verify():
 @app.route('/',methods=['POST'])
 def webhook():
     data = request.get_json()
-	print(data)
+	logging.info(data)
+
     
 
 if __name__ == "__main__":
