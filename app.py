@@ -8,7 +8,7 @@ FB_ACCESS_TOKEN = "EAA2YfX5EvmQBAAeixF2EDxrGijvj6rZCu6ZABfquFgR2ih84PUAcYdsDvye0
 
 
 VERIFICATION_TOKEN = "hello"
-
+print("Testtttttt")
 
 @app.route('/', methods=['GET'])
 def verify():
