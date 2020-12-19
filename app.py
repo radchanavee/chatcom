@@ -10,9 +10,8 @@ VERIFY_TOKEN = "hello"
 print("Testtttttt")
 
 def get_bot_response(message):
-    """This is just a dummy function, returning a variation of what
-    the user said. Replace this function with one connected to chatbot."""
-    return "This is a dummy response to '{}'".format(message)
+   
+    return "This is a dummy response to ".format(message)
 
 
 def verify_webhook(req):
@@ -22,14 +21,12 @@ def verify_webhook(req):
         return "incorrect"
 
 def respond(sender, message):
-    """Formulate a response to the user and
-    pass it on to a function that sends it."""
+
     response = get_bot_response(message)
     send_message(sender, response)
 
 
 def is_user_message(message):
-    """Check if the message is a message from the user"""
     return (message.get('message') and
             message['message'].get('text') and
             not message['message'].get("is_echo"))
@@ -37,8 +34,7 @@ def is_user_message(message):
 
 @app.route("/webhook")
 def listen():
-    """This is the main function flask uses to 
-    listen at the `/webhook` endpoint"""
+	print("Hiiiii")
     if request.method == 'GET':
         return verify_webhook(request)
 
