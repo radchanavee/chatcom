@@ -22,7 +22,6 @@ def verify():
 def webhook():
 	data = request.get_json()
 	log(data)
-
 	return "ok",200
 
 def log(message)
