@@ -5,8 +5,6 @@ from flask import Flask, request
 app = Flask("My echo bot")
 
 PAGE_ACCESS_TOKEN = "EAA2YfX5EvmQBAAeixF2EDxrGijvj6rZCu6ZABfquFgR2ih84PUAcYdsDvye0WLwPVMsM7C1TrxHLHR4NWYcuWqB6Yv5vJsTnYv3ZBphmg1iE6pDZBRbYZBzJ4dBiVNNaFk0wVSNYOLh7xu7qGHmLwjwtI2ZC5UOgXreDaDEwhuVwZDZD"
-
-
 VERIFY_TOKEN = "hello"
 print("Testtttttt")
 
@@ -20,8 +18,8 @@ def verify():
 
 @app.route('/',methods=['POST'])
 def webhook():
+	print(request.data)
 	data = request.get_json()
-	print('Hiiiiiiiiiiiiiiiiiiiiiiiiiii')
 	return "ok",200
 
 
